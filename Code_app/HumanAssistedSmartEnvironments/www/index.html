@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Include meta tag to ensure proper rendering and touch zooming -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Include jQuery Mobile stylesheets -->
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <!-- Include the jQuery library -->
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <!-- Include the jQuery Mobile library -->
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <meta charset="utf-8"/>
+    <!--    <link rel="stylesheet" type="text/css" href="css/index.css" />-->
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/databaseHandler.js"></script>
+    <script type="text/javascript" src="js/environmentHandler.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <title>Hello World</title>
+</head>
+
+<body>
+<!--Create a page of adding the new environment to the database-->
+<div data-role="page" id="addNewEnvironmentPage">
+    <!--Menu panel on the left with active add a new environment page-->
+    <div data-role="panel" id="addPagePanel">
+        <h1>Menu</h1>
+        <ul data-role="listview" data-inset="true">
+            <li data-role="list-divider" style="background-color: #22262d; color: #FFFFFF; text-shadow: none">
+                Environment
+            </li>
+            <li data-icon="home">
+                <a href="#mainPage">Home</a>
+            </li>
+            <li data-icon="plus">
+                <a class="active" href="#addNewEnvironmentPage">Add</a>
+            </li>
+            <li data-icon="grid">
+                <a href="#seeDataPage">See Data</a>
+            </li>
+        </ul>
+    </div>
+    <!--create a header-->
+    <div data-role="header" id="isAddDataPageHeader" data-position="fixed">
+        <a href="#addPagePanel" class="ui-btn ui-icon-bars ui-btn-icon-notext ui-corner-all ui-shadow"></a>
+        <h1>Add new simulated environment</h1>
+    </div>
+    <!--content of the add new environment page-->
+    <div data-role="main" class="ui-content">
+        <div class="slider-container">
+            <p>How much is comfort more important than saving energy?</p>
+            <input type="range" min="0" max="99" value="50" class="slider"
+                   data-theme="c" id="ComfortEconomyRatio">
+        </div>
+        <form>
+            <div class="ui-field-contain" id="addData-content">
+                <label for="envName">Name:</label>
+                <input type="text" id="envName" data-clear-btn="true"/>
+                <label for="envCountry">Country:</label>
+                <input type="text" id="envCountry" data-clear-btn="true"/>
+                <label for="txtEnvCity">City:</label>
+                <input type="text" id="txtEnvCity" data-clear-btn="true"/>
+                <label for="txtTempInside">Tempurature indoor:</label>
+                <input type="number" id="txtTempInside" data-clear-btn="true"/>
+                <label for="txtTempOutdoor">Tempurature outdoor:</label>
+                <input type="number" id="txtTempOutdoor" data-clear-btn="true"/>
+                <label for="txtHumidityIndoor">Humidity indoor:</label>
+                <input type="number" id="txtHumidityIndoor" data-clear-btn="true"/>
+                <label for="txtHumidityOutdoor">Humidity outdoor:</label>
+                <input type="number" id="txtHumidityOutdoor" data-clear-btn="true"/>
+                <label for="txtWind">Wind speed:</label>
+                <input type="number" id="txtWind" data-clear-btn="true"/>
+                <label for="txtRain">Chance of rain:</label>
+                <input type="number" id="txtRain" data-clear-btn="true"/>
+                <label for="txtCO2levelIndoor">CO2 level indoor:</label>
+                <input type="number" id="txtCO2levelIndoor" data-clear-btn="true"/>
+                <label for="txtCO2levelOutdoor">CO2 level outdoor:</label>
+                <input type="number" id="txtCO2levelOutdoor" data-clear-btn="true"/>
+                <label for="txtEnergyBalance">Energy Balance:</label>
+                <input type="number" id="txtEnergyBalance" data-clear-btn="true"/>
+                <label for="txtHeatLosses">Heat Losses:</label>
+                <input type="number" id="txtHeatLosses" data-clear-btn="true"/>
+                <label for="txtPMVstatus">PMV status:</label>
+                <input type="number" id="txtPMVstatus" data-clear-btn="true"/>
+                <label for="txtHVACHeatProd">HVAC heat production:</label>
+                <input type="number" id="txtHVACHeatProd" data-clear-btn="true"/>
+                <label for="txtLightPowerCon">Light Power Consumption:</label>
+                <input type="number" id="txtLightPowerCon" data-clear-btn="true"/>
+                <label for="txtLuxLevelIn">Lux level indoor:</label>
+                <input type="number" id="txtLuxLevelIn" data-clear-btn="true"/>
+                <label for="txtLuxLevelOut">Lux level outdoor:</label>
+                <input type="number" id="txtLuxLevelOut" data-clear-btn="true"/>
+                <label for="txtComputersNum">Number of computers:</label>
+                <input type="number" id="txtComputersNum" data-clear-btn="true"/>
+                <label for="txtDoorsNum">Number of doors:</label>
+                <input type="number" id="txtDoorsNum" data-clear-btn="true"/>
+                <label for="txtWindowsNum">Number of windows:</label>
+                <input type="number" id="txtWindowsNum" data-clear-btn="true"/>
+                <label for="txtLampsNum">Number of lamps:</label>
+                <input type="number" id="txtLampsNum" data-clear-btn="true"/>
+                <div>
+                    <p>What is HVAC status?</p>
+                    <label for="boolHVACstatusTrue">true</label>
+                    <input type="radio" id="boolHVACstatusTrue" name="HVACstatus" data-clear-btn="true"/>
+                    <label for="boolHVACstatusFalse">false</label>
+                    <input type="radio" id="boolHVACstatusFalse" name="HVACstatus" data-clear-btn="true"/>
+                </div>
+                <div>
+                    <p>Is somebody working behind the desk right now?</p>
+                    <label for="boolDeskWorkTrue">yes</label>
+                    <input type="radio" id="boolDeskWorkTrue" name="deskWork" data-clear-btn="true"/>
+                    <label for="boolDeskWorkFalse">no</label>
+                    <input type="radio" id="boolDeskWorkFalse" name="deskWork" data-clear-btn="true"/>
+                </div>
+                <div>
+                    <p>Can the system authomatically switch the light on/off?</p>
+                    <label for="boolSwitchLightTrue">yes</label>
+                    <input type="radio" id="boolSwitchLightTrue" name="switchLight" data-clear-btn="true"/>
+                    <label for="boolSwitchLightFalse">no</label>
+                    <input type="radio" id="boolSwitchLightFalse" name="switchLight" data-clear-btn="true"/>
+                </div>
+                <div>
+                    <p>Can the system authomatically open/close doors?</p>
+                    <label for="boolOpenDoorTrue">yes</label>
+                    <input type="radio" id="boolOpenDoorTrue" name="openDoor" data-clear-btn="true"/>
+                    <label for="boolCloseDoorFalse">no</label>
+                    <input type="radio" id="boolCloseDoorFalse" name="openDoor" data-clear-btn="true"/>
+                </div>
+                <div>
+                    <p>Can the system authomatically move windows' shades?</p>
+                    <label for="boolMoveShadesTrue">yes</label>
+                    <input type="radio" id="boolMoveShadesTrue" name="moveShades" data-clear-btn="true"/>
+                    <label for="boolMoveShadesFalse">no</label>
+                    <input type="radio" id="boolMoveShadesFalse" name="moveShades" data-clear-btn="true"/>
+                </div>
+                <div>
+                    <p>Can the system automatically control the HVAC system?</p>
+                    <label for="boolControlHVACTrue">yes</label>
+                    <input type="radio" id="boolControlHVACTrue" name="controlHVAC" data-clear-btn="true"/>
+                    <label for="boolControlHVACFalse">no</label>
+                    <input type="radio" id="boolControlHVACFalse" name="controlHVAC" data-clear-btn="true"/>
+                </div>
+                <label for="btnAdd"></label>
+                <a class="ui-btn ui-icon-plus ui-btn-icon-left" id="btnAdd" onclick="addEnvironment()">
+                    Submit
+                </a>
+            </div>
+        </form>
+    </div>
+    <div data-role="footer" data-position="fixed" id="isAddDataPageFooter">
+        <h1>Contact information</h1>
+    </div>
+</div>
+
+<!--Home page content - where all rules and actions appear-->
+<div data-role="page" id="mainPage">
+    <!--Menu panel on the left with active main page-->
+    <div data-role="panel" id="mainPagePanel">
+        <h1 style="color: #3b424c">Menu</h1>
+        <ul data-role="listview" data-inset="true">
+            <li data-role="list-divider" style="background-color: #22262d; color: #FFFFFF; text-shadow: none">
+                Environment
+            </li>
+            <li data-icon="home">
+                <a class="active" href="#mainPage">Home</a>
+            </li>
+            <li data-icon="plus">
+                <a href="#addNewEnvironmentPage">Add</a>
+            </li>
+            <li data-icon="grid">
+                <a href="#seeDataPage">See Data</a>
+            </li>
+        </ul>
+    </div>
+    <div data-role="header" id="isMainPageHeader" data-position="fixed">
+        <a href="#mainPagePanel" class="ui-btn ui-icon-bars ui-btn-icon-notext ui-corner-all ui-shadow"></a>
+        <h1>Home</h1>
+    </div>
+    <div data-role="main" class="ui-content">
+        <!--Create a select list of all environment held in the database-->
+        <form id="main-page-form" style="text-align: center">
+            <h3>Please, choose the simulated environment you want to work with:
+            </h3>
+            <div class="ui-field-contain">
+                    <select name="select-native-1" id="select-native-1">
+                <option>Choose...</option>
+                    </select>
+            </div>
+            <!--Creates a list of all users held in the selected environment-->
+            <div data-role="main">
+                <ul data-role="listview"
+                    id="users-content"
+                >
+                </ul>
+                <div class="ui-field-contain">
+                    <form>
+                        <fieldset data-role="controlgroup" id="mainPage-content">    
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+            <div class="ui-field-contain" id="user-details">
+            </div>
+            <div class="ui-field-contain" id="user-names-details">
+            </div>
+        </form>
+        <!--Informs which user is chosen-->
+        <div class="ui-field-contain" id="UserAsked" name="UserAsked">
+        </div>
+        <!--Creates a form for questions needed to ask-->
+        <form>
+            <div class="ui-field-contain" id="lstQuestions">
+            </div>
+        </form>
+        <div class="ui-field-contain" id="lstActions">
+        </div>
+        <ul data-role="listview" id="listIfOne">
+        </ul>
+        <ul data-role="listview" id="listIfTwo">
+        </ul>
+    </div>
+    <!--Creates a footer-->
+    <div data-role="footer" data-position="fixed" id="isMainPageFooter">
+        <h1>Contact information</h1>
+    </div>
+</div>
+<!--See data page-->
+<div data-role="page" id="seeDataPage">
+    <!--Menu panel on the left with active see data page-->
+    <div data-role="panel" id="seeDataPagePanel">
+        <h1>Menu</h1>
+        <ul data-role="listview" data-inset="true">
+            <li data-role="list-divider" style="background-color: #22262d; color: #FFFFFF; text-shadow: none">
+                Environment
+            </li>
+            <li data-icon="home">
+                <a href="#mainPage">Home</a>
+            </li>
+            <li data-icon="plus">
+                <a href="#addNewEnvironmentPage">Add</a>
+            </li>
+            <li data-icon="grid">
+                <a class="active" href="#seeDataPage">See Data</a>
+            </li>
+        </ul>
+    </div>
+    <!--Create a header-->
+    <div data-role="header" id="isSeeDataPageHeader" data-position="fixed">
+        <a href="#seeDataPagePanel"
+           class="ui-btn ui-icon-bars ui-btn-icon-notext ui-corner-all ui-shadow"></a>
+        <h1>Environment's data</h1>
+    </div>
+    <!--Contains all available environments in the database with their data-->
+    <div data-role="main" class="ui-content">
+        <form class="ui-filterable">
+            <input data-type="search" id="txtKeyword"/>
+        </form>
+        <ul data-role="listview" data-filter="true"
+            data-input="#txtKeyword" data-inset="true"
+            id="lstEnvironments">
+        </ul>
+        <div data-role="popup" id="popupUpdateDelete">
+            <div data-role="header" id="popupHeader">
+                <a class="ui-btn ui-icon-delete ui-btn-icon-notext ui-corner-all" data-rel="back"></a>
+                <h1>Options</h1>
+            </div>
+            <div data-role="main" class="ui-content">
+                <a class="ui-btn ui-icon-delete ui-btn-icon-left ui-btn-inline"
+                   onclick="deleteEnvironment()"
+                >Delete</a>
+            </div>
+        </div>
+    </div>
+    <div data-role="footer" data-position="fixed" id="isSeeDataPageFooter">
+        <h1>Contact information</h1>
+    </div>
+</div>
+</body>
+</html>
+
+<style>
+    #isMainPageHeader, #isSeeDataPageHeader, #isAddDataPageHeader,
+    #isMainPageFooter, #isSeeDataPageFooter, #isAddDataPageFooter,
+    #popupHeader {
+        background-color: #589ea5;
+        color: whitesmoke;
+        text-shadow: none
+    }
+
+    .ui-content {
+        background-color: #f9f9f9;
+        text-shadow: none
+    }
+
+    li {
+        background-color: #FFffff;
+    }
+
+    h3 {
+        align-items: center
+    }
+
+    #seeDataPagePanel, #addPagePanel, #mainPagePanel {
+        /*background-color: #589ea5;*/
+        background-color: #75be9c;
+        color: whitesmoke;
+        text-shadow: none
+    }
+
+    #addData-content {
+        color: #3b424c
+    }
+
+    #btnAdd, #btnAddUser, #btnUpdateTempIn, #btnSkip, #btnUpdateTempOut, #btnUpdateHumIn,
+    #btnUpdateHumOut, #btnUpdateWind, #btnUpdateRain, #btnConfirmValue, #btnUpdateCO2In,
+    #btnUpdateCO2Out, #btnLampsNum, #btnWindowsNum, #btnDoorsNum, #btnCompNum, #btnLuxIn,
+    #btnLuxIn, #btnLuxOut, #btnPMVstatus, #btnSelectAction, #YesIamFree, #NoICant {
+        background-color: #22262d;
+        color: whitesmoke;
+        text-shadow: none
+    }
+
+    #mainPage, #seeDataPage, #addNewEnvironmentPage {
+        background-color: #f9f9f9;
+    }
+
+</style>
+
+
+

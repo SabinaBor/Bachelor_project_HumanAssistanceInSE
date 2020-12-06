@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="android" name="Android">
+      <configuration>
+        <option name="GEN_FOLDER_RELATIVE_PATH_APT" value="/../../HumanAssistedSmartEnvironments/gen" />
+        <option name="GEN_FOLDER_RELATIVE_PATH_AIDL" value="/../../HumanAssistedSmartEnvironments/gen" />
+        <option name="MANIFEST_FILE_RELATIVE_PATH" value="/../../HumanAssistedSmartEnvironments/AndroidManifest.xml" />
+        <option name="RES_FOLDER_RELATIVE_PATH" value="/../../HumanAssistedSmartEnvironments/res" />
+        <option name="ASSETS_FOLDER_RELATIVE_PATH" value="/../../HumanAssistedSmartEnvironments/assets" />
+        <option name="LIBS_FOLDER_RELATIVE_PATH" value="/../../HumanAssistedSmartEnvironments/libs" />
+        <option name="PROGUARD_LOGS_FOLDER_RELATIVE_PATH" value="/../../HumanAssistedSmartEnvironments/proguard_logs" />
+      </configuration>
+    </facet>
+  </component>
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/platforms/android/.gradle" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/gen" isTestSource="false" generated="true" />
+      <excludeFolder url="file://$MODULE_DIR$/platforms" />
+    </content>
+    <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="jquery.mobile-1.4.5" level="application" />
+    <orderEntry type="library" name="jquery-1.11.3" level="application" />
+  </component>
+</module>

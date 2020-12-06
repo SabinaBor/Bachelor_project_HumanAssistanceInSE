@@ -1,2 +1,1 @@
-# Bachelor_project_HumanAssistanceInSE
-Bachelor project "Human-assisted energy saving in Smart Environments". Rug, 2019-2020.
+# bsc-2020-human-assistance-in-smart-environment
